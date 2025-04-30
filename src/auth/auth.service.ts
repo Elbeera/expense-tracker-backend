@@ -1,4 +1,3 @@
-// src/auth/auth.service.ts
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -8,7 +7,7 @@ import { User } from '../user/user.entity';
 import { SignupInput } from './dto/signup.input';
 import { LoginInput } from './dto/login.input';
 import { SignupResponse } from './dto/signup-response';
-import { LoginResponse } from './dto/login-response'; // <-- Make sure you import this
+import { LoginResponse } from './dto/login-response';
 
 @Injectable()
 export class AuthService {
@@ -57,7 +56,7 @@ export class AuthService {
       name: user.username,
     });
 
-    return { token }; // ✅ Return an object with { token }
+    return { token };
   }
 
   async me(userId: number): Promise<User> {

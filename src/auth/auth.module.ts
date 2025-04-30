@@ -6,23 +6,19 @@ import { User } from '../user/user.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from '../common/strategies/jwt.strategy';
 import { PassportModule } from '@nestjs/passport';
-import { UserModule } from '../user/user.module'; // Import UserModule
+import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User]), // Register User entity with TypeORM
-    PassportModule.register({ defaultStrategy: 'jwt' }), // Register Passport with JWT strategy
+    TypeOrmModule.forFeature([User]),
+    PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'your_jwt_secret', // Use environment variable for secret
-      signOptions: { expiresIn: '7d' }, // Set token expiration to 7 days
+      secret: process.env.JWT_SECRET || 'your_jwt_secret',
+      signOptions: { expiresIn: '7d' },
     }),
-    UserModule, // Make sure UserModule is available to manage users if needed
+    UserModule,
   ],
-  providers: [
-    AuthService, // The service that handles authentication logic
-    AuthResolver, // GraphQL resolver for authentication
-    JwtStrategy, // Strategy for JWT authentication
-  ],
-  exports: [JwtStrategy], // Export JwtStrategy to use in other modules if needed
+  providers: [AuthService, AuthResolver, JwtStrategy],
+  exports: [JwtStrategy],
 })
 export class AuthModule {}

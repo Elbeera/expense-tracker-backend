@@ -38,7 +38,7 @@ describe('AuthService', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks(); // Clear all mocks between tests
+    jest.clearAllMocks();
   });
 
   describe('signup', () => {

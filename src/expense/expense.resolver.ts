@@ -24,11 +24,11 @@ export class ExpenseResolver {
   @Mutation(() => Boolean)
   deleteAllExpenses(): boolean {
     this.expenseService.deleteAllExpenses();
-    return true; // Returning true to confirm successful deletion
+    return true;
   }
 
   @Mutation(() => Expense, { nullable: true })
   deleteExpense(@Args('id') id: string) {
-    return this.expenseService.deleteExpense(id); // Delete expense by id
+    return this.expenseService.deleteExpense(id);
   }
 }

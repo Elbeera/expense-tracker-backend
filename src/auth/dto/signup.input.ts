@@ -1,4 +1,3 @@
-// src/auth/dto/signup.input.ts
 import { InputType, Field } from '@nestjs/graphql';
 import { IsEmail, IsString, MinLength } from 'class-validator';
 

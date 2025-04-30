@@ -14,37 +14,31 @@ import { User } from '../user/user.entity';
 export class AuthResolver {
   constructor(private authService: AuthService) {}
 
-  // Sign up mutation
   @Mutation(() => SignupResponse)
   async signup(@Args('input') input: SignupInput): Promise<SignupResponse> {
     return this.authService.signup(input);
   }
 
-  // Login mutation
   @Mutation(() => LoginResponse)
   async login(
     @Args('input') input: LoginInput,
-    @Context() context: { res: Response }, // Use @Context() with proper typing
+    @Context() context: { res: Response },
   ): Promise<LoginResponse> {
-    // Perform the login operation
     const { token } = await this.authService.login(input);
 
-    // Set the token in an HttpOnly cookie for secure transmission
     context.res.cookie('token', token, {
-      httpOnly: true, // Ensures JavaScript can't access this cookie
-      secure: process.env.NODE_ENV === 'production', // Only secure in production
-      sameSite: 'lax', // Same-site protection
-      maxAge: 1000 * 60 * 60 * 24, // 1 day expiration for the cookie
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 1000 * 60 * 60 * 24,
     });
 
-    // Return the token in the response
-    return { token }; // Return token as an object (GraphQL response format)
+    return { token };
   }
 
-  // Query to get the current user (protected)
   @Query(() => User)
-  @UseGuards(GqlAuthGuard) // Ensures the user is authenticated
+  @UseGuards(GqlAuthGuard)
   async me(@CurrentUser() user: User): Promise<User> {
-    return this.authService.me(user.id); // Fetch the user information based on the current user
+    return this.authService.me(user.id);
   }
 }

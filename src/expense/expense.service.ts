@@ -32,10 +32,10 @@ export class ExpenseService {
       (expense) => expense.id === id,
     );
     if (expenseIndex === -1) return undefined;
-    return this.expenses.splice(expenseIndex, 1)[0]; // Remove and return the deleted expense
+    return this.expenses.splice(expenseIndex, 1)[0];
   }
 
   deleteAllExpenses(): void {
-    this.expenses = []; // Clears the entire expenses array
+    this.expenses = [];
   }
 }

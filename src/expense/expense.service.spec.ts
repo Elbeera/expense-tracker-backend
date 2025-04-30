@@ -2,16 +2,15 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ExpenseService } from './expense.service';
 import { Expense } from './expense.entity';
 
-// Mock the uuidv4 function to return a fixed ID
 jest.mock('uuid', () => ({
-  v4: jest.fn().mockReturnValue('fixed-uuid'), // Fixed UUID
+  v4: jest.fn().mockReturnValue('fixed-uuid'),
 }));
 
 describe('ExpenseService', () => {
   let service: ExpenseService;
 
   const mockExpense: Expense = {
-    id: 'fixed-uuid', // Use the fixed ID in the mock
+    id: 'fixed-uuid',
     title: 'Test Expense',
     amount: 100,
     category: 'Food',
@@ -28,7 +27,6 @@ describe('ExpenseService', () => {
 
   describe('getExpenses', () => {
     it('should return all expenses', () => {
-      // Adding a mock expense to the service's internal array
       service['expenses'] = [mockExpense];
 
       const result = service.getExpenses();
@@ -46,18 +44,17 @@ describe('ExpenseService', () => {
       );
 
       expect(result).toEqual(mockExpense);
-      expect(service['expenses']).toHaveLength(1); // Ensure the array length increases by 1
+      expect(service['expenses']).toHaveLength(1);
     });
   });
 
   describe('deleteExpense', () => {
     it('should delete an expense by id and return the deleted expense', () => {
-      // Adding a mock expense to the service's internal array
       service['expenses'] = [mockExpense];
 
       const result = service.deleteExpense(mockExpense.id);
       expect(result).toEqual(mockExpense);
-      expect(service['expenses']).toHaveLength(0); // Ensure the expense is deleted from the array
+      expect(service['expenses']).toHaveLength(0);
     });
 
     it('should return undefined if the expense is not found', () => {
@@ -68,12 +65,11 @@ describe('ExpenseService', () => {
 
   describe('deleteAllExpenses', () => {
     it('should delete all expenses and return an empty array', () => {
-      // Adding mock expenses to the service's internal array
       service['expenses'] = [mockExpense];
 
       service.deleteAllExpenses();
 
-      expect(service['expenses']).toHaveLength(0); // Ensure the array is empty
+      expect(service['expenses']).toHaveLength(0);
     });
   });
 });
