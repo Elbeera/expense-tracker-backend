@@ -3,21 +3,21 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { ObjectType, Field } from '@nestjs/graphql';
 
 @Entity()
-@ObjectType() // This decorator makes it a GraphQL type
+@ObjectType()
 export class User {
   @PrimaryGeneratedColumn()
-  @Field() // This decorator marks the field for GraphQL exposure
+  @Field()
   id: number;
 
   @Column()
-  @Field() // This decorator marks the field for GraphQL exposure
+  @Field()
   username: string;
 
   @Column()
-  @Field() // This decorator marks the field for GraphQL exposure
+  @Field()
   email: string;
 
   @Column()
-  @Field() // This decorator marks the field for GraphQL exposure
+  @Field()
   password: string;
 }

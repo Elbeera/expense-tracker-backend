@@ -9,7 +9,6 @@ export class UserService {
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
 
-  // Add findOne method to retrieve a user by their ID
   async findById(userId: number): Promise<User> {
     const user = await this.userRepository.findOne({
       where: { id: userId },
@@ -21,6 +20,4 @@ export class UserService {
 
     return user;
   }
-
-  // Optionally, you can also define other methods like findOneByEmail, etc.
 }
