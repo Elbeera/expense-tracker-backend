@@ -1,0 +1,51 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Expense {
+  id: ID!
+  title: String!
+  amount: Float!
+  category: String!
+  createdAt: String!
+}
+
+type User {
+  id: Float!
+  username: String!
+  email: String!
+  password: String!
+}
+
+type SignupResponse {
+  user: User!
+  token: String!
+}
+
+type LoginResponse {
+  token: String!
+}
+
+type Query {
+  getExpenses: [Expense!]!
+  me: User!
+}
+
+type Mutation {
+  addExpense(title: String!, amount: Float!, category: String!, createdAt: String!): Expense!
+  deleteAllExpenses: Boolean!
+  deleteExpense(id: String!): Expense
+  signup(input: SignupInput!): SignupResponse!
+  login(input: LoginInput!): LoginResponse!
+}
+
+input SignupInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
