@@ -71,7 +71,3 @@ npm run test
 ## 👨‍💻 Author
 
 Built by Hothyfa Elbeera — Full Stack Developer focused on designing scalable, testable systems using modern web technologies.
-
-- Integrate a persistent database (e.g., PostgreSQL or MongoDB)
-- Add expense filters
-- Monthly/weekly expense summaries
